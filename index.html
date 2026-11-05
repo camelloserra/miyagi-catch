@@ -529,6 +529,19 @@ function frame(now){
   requestAnimationFrame(frame);
 }
 resize(); requestAnimationFrame(frame);
+
+/* In-app browsers (WhatsApp, Mail...) sometimes hand the page a stale, offset viewport on the very first load, and only a reload fixes it.
+   On touch devices we do that reload once, automatically, shortly after opening (never after the player has started, never in a loop). */
+(function(){
+  let touched=false; addEventListener('pointerdown',()=>{touched=true;},{capture:true,once:true});
+  try{
+    if(!(window.matchMedia&&matchMedia('(pointer:coarse)').matches)) return;
+    const k='mc_reload', last=+sessionStorage.getItem(k)||0, now=Date.now();
+    if(now-last<15000) return;                       // just reloaded: leave it alone
+    sessionStorage.setItem(k,String(now));
+    setTimeout(()=>{ if(!touched) location.reload(); },1200);
+  }catch(e){}
+})();
 </script>
 </body>
 </html>
