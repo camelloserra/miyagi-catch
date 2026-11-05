@@ -59,7 +59,7 @@ const OUTLINE = 4.6;               // outline thickness (thicker than before)
 const GAP_OPEN = 46;               // tip opening
 const GAP_CLOSED = 12;             // tips closed
 const GAP_CLOSED_CAUGHT = 16;      // tips closed on a fly (a sliver stays open)
-const HAND_X_MIN = -330, HAND_X_MAX = 760;   // how far the hand can travel horizontally
+let HAND_X_MIN = -330, HAND_X_MAX = 760;   // how far the hand can travel horizontally
 const HAND_Y_MIN = -640, HAND_Y_MAX = 140;   // ...and vertically (up = the long arm and sleeve slide into view)
 const HAND_FOLLOW_Y = 0.75;        // how much the hand follows the mouse vertically
 const HAND_SMOOTH = 10;            // higher = hand follows faster
@@ -86,15 +86,38 @@ const errEl = document.getElementById('err');
 const IMG = {};
 let ready = false;
 let W=0, H=0, DPR=1, s=1, ox=0, oy=0, debug=false;
+let ts=1, tox=0, toy=0, layout='desktop', uiM=12;   // title transform + layout mode (desktop / portrait / phoneLand)
 
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const rand=(a,b)=>a+Math.random()*(b-a);
-const toImg=(x,y)=>({x:(x-ox)/s-MIYAGI_DX, y:(y-oy)/s});   // screen -> Miyagi's coordinates
+const toImg=(x,y)=>({x:(x-ox)/s, y:(y-oy)/s});   // screen -> Miyagi's coordinates
 
 function resize(){
   DPR=window.devicePixelRatio||1; W=innerWidth; H=innerHeight;
   cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
-  s=Math.min(W/IW,H/IH); ox=(W-IW*s)/2; oy=(H-IH*s)/2;
+  cv.style.width=W+'px'; cv.style.height=H+'px';
+  const A=W/H, coarse=!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches);
+  const FACE_X=1459.5;                                   // x between Miyagi's eyes (his own frame)
+  if(A<0.9){                                             // phone, portrait: title on top, big Miyagi at the bottom
+    layout='portrait'; const k=W/970;
+    ts=0.34*k; tox=16.6*k; toy=121.4*k;
+    s=Math.max(0.88*k, 0.766*H/1433); ox=W/2-FACE_X*s; oy=H-IH*s;   // taller phones: grow Miyagi so his hat keeps meeting the title like the reference
+    uiM=Math.max(10,W*0.04);
+  } else if((coarse&&A>=1.9)||(A>=2.0&&H<500)){          // phone, landscape: title contained by height, Miyagi a bit bigger
+    layout='phoneLand';
+    ts=H/IH; tox=(W-IW*ts)/2; toy=0;
+    s=ts*1.115; ox=W/2-FACE_X*s; oy=H-IH*s;
+    uiM=Math.max(10,H*0.036);
+  } else {                                               // desktop / tablet: unchanged
+    layout='desktop';
+    ts=Math.min(W/IW,H/IH); tox=(W-IW*ts)/2; toy=(H-IH*ts)/2;
+    s=ts; ox=tox+MIYAGI_DX*s; oy=toy;
+    uiM=14;
+  }
+  HAND_X_MIN=-330; if(layout==='portrait') HAND_X_MIN=Math.max(-330,(W*0.22-ox)/s-GRIP0.x);   // keep the hand on screen on narrow phones
+  const mob=layout!=='desktop', fsB=layout==='portrait'?Math.max(11,W*0.026):Math.max(11,H*0.03);
+  if(mob){ snd.style.bottom='auto'; snd.style.top=uiM+'px'; snd.style.right=uiM+'px'; snd.style.fontSize=fsB+'px'; snd.style.padding=(fsB*0.5)+'px '+(fsB*0.9)+'px'; }
+  else { snd.style.bottom='14px'; snd.style.top='auto'; snd.style.right='14px'; snd.style.fontSize='14px'; snd.style.padding='8px 14px'; }
 }
 addEventListener('resize',resize);
 
@@ -433,18 +456,18 @@ function drawLevelBanner(now){
 /* ---------- HUD ---------- */
 function pill(x,y,w,h){ctx.beginPath(); ctx.roundRect?ctx.roundRect(x,y,w,h,h/2):ctx.rect(x,y,w,h);}
 function drawHUD(now){
-  const fs=Math.max(15,Math.min(22,W/70));
+  const mob=layout!=='desktop', fs=mob?(layout==='portrait'?Math.max(11,W*0.026):Math.max(11,H*0.03)):Math.max(15,Math.min(22,W/70)), M=uiM;
   ctx.font=`800 ${fs}px system-ui,-apple-system,"Segoe UI",sans-serif`; ctx.textAlign='left'; ctx.textBaseline='middle';
   const t=`LEVEL ${level}   ·   Caught: ${score}   ·   Failed: ${failed}`;
   const w=ctx.measureText(t).width+fs*1.6, h=fs*2;
-  pill(14,14,w,h); ctx.fillStyle='rgba(255,255,255,.92)'; ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle='#1d2a5b'; ctx.stroke();
-  ctx.fillStyle='#1d2a5b'; ctx.fillText(t,14+fs*0.8,14+h/2+1);
+  pill(M,M,w,h); ctx.fillStyle='rgba(255,255,255,.92)'; ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle='#1d2a5b'; ctx.stroke();
+  ctx.fillStyle='#1d2a5b'; ctx.fillText(t,M+fs*0.8,M+h/2+1);
   ctx.textAlign='left';
   if(msg&&now-msgT<900){
     const a=1-(now-msgT)/900; ctx.globalAlpha=a;
     ctx.font=`900 ${fs*1.9}px system-ui,-apple-system,"Segoe UI",sans-serif`;
-    ctx.lineWidth=6; ctx.strokeStyle='#fff'; ctx.strokeText(msg,16,14+h+fs*1.6);
-    ctx.fillStyle='#c8312b'; ctx.fillText(msg,16,14+h+fs*1.6); ctx.globalAlpha=1;
+    ctx.lineWidth=6; ctx.strokeStyle='#fff'; ctx.strokeText(msg,M+2,M+h+fs*1.6);
+    ctx.fillStyle='#c8312b'; ctx.fillText(msg,M+2,M+h+fs*1.6); ctx.globalAlpha=1;
   }
   drawLevelBanner(now);
 }
@@ -467,9 +490,9 @@ function frame(now){
     } else Music.buzz(0,0,170);
     computeSticks();
     // scene in image space
-    ctx.setTransform(DPR*s,0,0,DPR*s,DPR*ox,DPR*oy);
+    ctx.setTransform(DPR*ts,0,0,DPR*ts,DPR*tox,DPR*toy);
     ctx.drawImage(IMG.title,0,0,IW,IH);
-    ctx.translate(MIYAGI_DX,0);
+    ctx.setTransform(DPR*s,0,0,DPR*s,DPR*ox,DPR*oy);
     ctx.drawImage(IMG.back,0,0,IW,IH);
     drawEyes(dt);
     drawHandLayer(IMG.armBack);    // arm + hand (thumb side)
