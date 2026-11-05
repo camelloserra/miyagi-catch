@@ -468,7 +468,7 @@ function drawHUD(now){
   pill(M,M,w,h); ctx.fillStyle='rgba(255,255,255,.92)'; ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle='#1d2a5b'; ctx.stroke();
   ctx.fillStyle='#1d2a5b';
   if(layout==='desktop') ctx.fillText(t,M+fs*0.8,M+h/2+1);
-  else { const cap=ctx.measureText('LEVEL').actualBoundingBoxAscent||fs*0.72; ctx.textBaseline='alphabetic'; ctx.fillText(t,M+fs*0.8,M+h/2+cap/2+fs*0.1); ctx.textBaseline='middle'; }   // optically centre the capitals in the pill
+  else { const cap=ctx.measureText('LEVEL').actualBoundingBoxAscent||fs*0.72; ctx.textBaseline='alphabetic'; ctx.fillText(t,M+fs*0.8,M+h/2+cap/2+fs*0.14); ctx.textBaseline='middle'; }   // optically centre the capitals in the pill
   ctx.textAlign='left';
   if(msg&&now-msgT<900){
     const a=1-(now-msgT)/900; ctx.globalAlpha=a;
