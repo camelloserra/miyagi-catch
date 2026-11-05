@@ -9,7 +9,7 @@
   html,body{margin:0;height:100%;background:#fff;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
             -webkit-user-select:none;user-select:none}
   html,body{position:fixed;inset:0;width:100%;overscroll-behavior:none}
-  canvas{position:fixed;left:0;bottom:0;display:block;width:100%;height:100%;cursor:none;touch-action:none}
+  canvas{position:fixed;left:0;top:0;display:block;width:100%;height:100%;cursor:none;touch-action:none}
   #snd{position:fixed;right:14px;bottom:14px;z-index:5;font:800 14px system-ui,-apple-system,"Segoe UI",sans-serif;color:#1d2a5b;
        background:rgba(255,255,255,.92);border:2px solid #1d2a5b;border-radius:999px;padding:8px 14px;cursor:pointer}
   #snd:hover{background:#fff}
@@ -88,6 +88,7 @@ const IMG = {};
 let ready = false;
 let W=0, H=0, DPR=1, s=1, ox=0, oy=0, debug=false;
 const FLY_MOBILE=0.45;   // fly size on phones relative to desktop (matches the reference screenshots)
+let vTX=0, vTY=0;
 let ts=1, tox=0, toy=0, layout='desktop', uiM=12;   // title transform + layout mode (desktop / portrait / phoneLand)
 
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -97,10 +98,11 @@ const toImg=(x,y)=>({x:(x-ox)/s, y:(y-oy)/s});   // screen -> Miyagi's coordinat
 const hudFs=()=>layout==='desktop'?Math.max(15,Math.min(22,W/70)):layout==='portrait'?Math.max(11,W*0.026):Math.max(11,H*0.03);
 function resize(){
   DPR=window.devicePixelRatio||1;
-  const vv=window.visualViewport; W=Math.round(document.documentElement.clientWidth||innerWidth);
-  // anchored to the bottom edge: if the browser reports a stale (too small) height, the extra space ends up as white at the TOP, never at the bottom
-  H=Math.round(Math.max(innerHeight,document.documentElement.clientHeight||0,(vv&&(vv.height+vv.offsetTop))||0,screen&&screen.height&&W<screen.width+1&&innerHeight>=screen.height*0.5?innerHeight:0));
-  if(cv.style.height!==H+'px') cv.style.height=H+'px';
+  // Follow the *visual* viewport: in-app browsers (WhatsApp, etc.) can leave the layout viewport offset from what is really visible
+  const vv=window.visualViewport;
+  if(vv && vv.width>0 && vv.height>0){ W=Math.round(vv.width); H=Math.round(vv.height); vTX=vv.offsetLeft; vTY=vv.offsetTop; }
+  else { W=Math.round(document.documentElement.clientWidth||innerWidth); H=Math.round(innerHeight); vTX=vTY=0; }
+  cv.style.width=W+'px'; cv.style.height=H+'px'; cv.style.transform=(vTX||vTY)?'translate('+vTX+'px,'+vTY+'px)':'none';
   cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
   const A=W/H, coarse=!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches);
   const FACE_X=1459.5;                                   // x between Miyagi's eyes (his own frame)
@@ -491,6 +493,7 @@ function drawHUD(now){
 let last=performance.now();
 function frame(now){
   const dt=Math.min(0.05,(now-last)/1000); last=now;
+  { const v=window.visualViewport; if(v && v.scale<=1.01 && (Math.round(v.width)!==W||Math.round(v.height)!==H||v.offsetLeft!==vTX||v.offsetTop!==vTY)) resize(); }
   ctx.setTransform(DPR,0,0,DPR,0,0);
   ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
   if(ready){
