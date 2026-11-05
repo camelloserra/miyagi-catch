@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Miyagi Catch</title>
+<style>
+  @font-face{font-family:'LvlFont';font-style:italic;font-weight:900;src:url(data:font/woff;base64,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) format('woff');}
+  html,body{margin:0;height:100%;background:#fff;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+            -webkit-user-select:none;user-select:none}
+  canvas{display:block;width:100vw;height:100vh;cursor:none;touch-action:none}
+  #snd{position:fixed;right:14px;bottom:14px;z-index:5;font:800 14px system-ui,-apple-system,"Segoe UI",sans-serif;color:#1d2a5b;
+       background:rgba(255,255,255,.92);border:2px solid #1d2a5b;border-radius:999px;padding:8px 14px;cursor:pointer}
+  #snd:hover{background:#fff}
+  #err{position:fixed;inset:0;display:none;align-items:center;justify-content:center;text-align:center;
+       padding:24px;font-size:18px;line-height:1.5;color:#1d2a5b;background:#fff}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="err"></div>
+<button id="snd" type="button" title="Music on / off (M)">♪ Music: ON</button>
+
+<script>
+/* =====================================================================
+   FILES (keep them in the same folder as this index.html)
+   ===================================================================== */
+const FILES = {
+  title: 'title.png',                    // big title behind Miyagi. Replace it with your own design (same 2736x1536 size)
+  back:  'miyagi_back.png',              // Miyagi without arms (transparent PNG)
+  armBack:  'miyagi_mano_manga_entera.png',     // whole arm + sleeve, goes BEHIND the chopsticks (transparent PNG)
+  armFront: 'miyagi_mano_manga_delantera.png',  // arm + sleeve without the thumb, goes IN FRONT of the chopsticks
+  fly1: 'fly_1.png',                 // fly, wings spread  (flap frame A)
+  fly2: 'fly_2.png',                 // fly, wings folded  (flap frame B)
+  flyDead: 'fly_squashed.png'        // squashed fly
+};
+
+/* =====================================================================
+   CONFIG  — every coordinate is in pixels of the 2736 x 1536 images
+   ===================================================================== */
+const IW = 2736, IH = 1536;
+const MIYAGI_DX = -90;             // moves the whole Miyagi (body, eyes, arm, chopsticks) sideways so his face is centred; the title stays put
+
+// Eyes
+const EYES = [ {x:1340,y:483}, {x:1579,y:476} ];
+const EYE_RX = 53, EYE_RY = 14;
+const IRIS_R = 22;                 // size of the black part of the eye (iris/pupil)
+const EYE_MAX_X = 9.5, EYE_MAX_Y = 4.2;
+const EYE_SMOOTH = 8;
+
+// Hand + chopsticks
+const GRIP0   = {x:718, y:716};    // point where the chopsticks go through the hand (resting pose)
+const TIP0    = {x:1476,y:855};    // where the tips rested in the original picture
+const SEP     = 24;                // distance between the two sticks at the grip (top stick passes through the thumb area)
+const SEP_REAR = 140;              // how far apart the sticks are at the back end (bottom stick opens up)
+const STICK_LEN = 1020;            // chopstick length (only stretches if the mouse is out of reach)
+const W_REAR = 30, W_TIP = 11;     // stick thickness at the back / at the tip
+const OUTLINE = 4.6;               // outline thickness (thicker than before)
+const GAP_OPEN = 46;               // tip opening
+const GAP_CLOSED = 12;             // tips closed
+const GAP_CLOSED_CAUGHT = 16;      // tips closed on a fly (a sliver stays open)
+const HAND_X_MIN = -330, HAND_X_MAX = 760;   // how far the hand can travel horizontally
+const HAND_Y_MIN = -640, HAND_Y_MAX = 140;   // ...and vertically (up = the long arm and sleeve slide into view)
+const HAND_FOLLOW_Y = 0.75;        // how much the hand follows the mouse vertically
+const HAND_SMOOTH = 10;            // higher = hand follows faster
+const PIVOT = {x:545, y:1950};     // the arm rotates around this point (the elbow, below the picture)
+const LEAN = 0.0006;               // arm tilt per pixel of horizontal travel
+// where the arm PNGs (1440 x 2956) sit on the 2736 x 1536 scene
+const ARM = {scale:0.642, x:93, y:509};
+
+// Fly sprites (head pointing up, body centre at the anchor)
+const FLY_LEN = 57.6;              // fly length on the scene, in scene pixels (was 64: now 10% smaller)
+const FLY_ANCHORS = { fly1:{x:0.503,y:0.495}, fly2:{x:0.503,y:0.495}, flyDead:{x:0.527,y:0.466} };  // body centre inside each sprite (0..1)
+const FLY_SPR_BODY = 160;          // body length (head to tail) inside the sprites
+const FLAP_MS = 45;                // wing flap speed
+
+// Game
+const BASE_SPEED = 0.17;           // level 1 fly speed, in screen widths per second
+const LEVEL_GROWTH = 1.3;          // speed multiplier for every new level (was 1.14)
+const DEBUG_KEY = 'd';
+/* ===================================================================== */
+
+const cv = document.getElementById('c');
+const ctx = cv.getContext('2d');
+const errEl = document.getElementById('err');
+const IMG = {};
+let ready = false;
+let W=0, H=0, DPR=1, s=1, ox=0, oy=0, debug=false;
+
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const rand=(a,b)=>a+Math.random()*(b-a);
+const toImg=(x,y)=>({x:(x-ox)/s-MIYAGI_DX, y:(y-oy)/s});   // screen -> Miyagi's coordinates
+
+function resize(){
+  DPR=window.devicePixelRatio||1; W=innerWidth; H=innerHeight;
+  cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
+  s=Math.min(W/IW,H/IH); ox=(W-IW*s)/2; oy=(H-IH*s)/2;
+}
+addEventListener('resize',resize);
+
+/* ---------- loading ---------- */
+const load=(k,src)=>new Promise(res=>{const i=new Image(); i.onload=()=>{IMG[k]=i;res(true)}; i.onerror=()=>res(false); i.src=src;});
+const fontReady=(document.fonts&&document.fonts.load)?document.fonts.load("italic 900 100px LvlFont","LEVEL 0123456789").catch(()=>{}):Promise.resolve();
+Promise.all([fontReady,...Object.entries(FILES).map(([k,v])=>load(k,v))]).then(()=>{
+  const missing=Object.entries(FILES).filter(([k])=>!IMG[k]).map(([,v])=>v);
+  if(missing.length){
+    errEl.style.display='flex';
+    errEl.innerHTML='Missing image files next to this page:<br><b>'+missing.join('<br>')+'</b>';
+  } else { ready=true; startLevel(1); }
+});
+
+/* ---------- state ---------- */
+const mouse={x:innerWidth*0.62,y:innerHeight*0.52};
+let pressed=false, gap=GAP_OPEN;
+let score=0, failed=0, level=1;
+let msg='', msgT=0, banner='Level 1', bannerT=performance.now();
+const eyeLook={x:0,y:0};
+const hand={tx:0,ty:0,th:0};
+const fly={x:0,y:0,vx:0,vy:0,tx:0,ty:0,next:0,state:'wait',t:0,ang:0};  // state: fly | caught | drop | wait
+
+function say(t){msg=t; msgT=performance.now();}
+function spawnFly(){
+  const side=Math.floor(Math.random()*4);
+  fly.x=side==0?-30:side==1?W+30:rand(0,W);
+  fly.y=side==2?-30:side==3?H+30:rand(0,H);
+  fly.vx=fly.vy=0; fly.next=0; fly.state='fly';
+}
+function startLevel(n){
+  level=n; banner='Level '+n; bannerT=performance.now(); spawnFly();
+}
+const flySpeed=()=>Math.min(BASE_SPEED*Math.pow(LEVEL_GROWTH,level-1),4.5)*W;
+const catchRadius=()=>Math.max(30,64*s);
+
+/* =====================================================================
+   SOUND
+   Music: the file below, looping, very quiet. The button / the M key turn only the MUSIC on and off.
+   Effects (always on): a very soft constant fly buzz and a "splacht!" when you catch it — synthesised live.
+   Browsers block sound until the first click, so everything starts with your first click.
+   ===================================================================== */
+const MUSIC_FILE   = 'music.mp3';   // put it next to index.html (replace it with any other track)
+const MUSIC_VOLUME = 0.05;         // 0..1  — very quiet background (new track is a bit louder; this is 50% quieter than before)
+const MUSIC_FADE_S = 3;            // fade-in time
+const SFX_VOLUME   = 0.85;         // buzz + splat overall
+const BUZZ_VOLUME  = 0.5;          // fly buzz (50% quieter than before); 0 = off
+const SPLAT_VOLUME = 0.8;          // "splacht!"
+
+function createSfx(ac){
+  const master=ac.createGain(); master.gain.value=SFX_VOLUME;
+  const comp=ac.createDynamicsCompressor(); comp.threshold.value=-18; comp.ratio.value=3; comp.attack.value=0.01; comp.release.value=0.25;
+  master.connect(comp); comp.connect(ac.destination);
+  const nb=ac.createBuffer(1,ac.sampleRate*2,ac.sampleRate), nd=nb.getChannelData(0); for(let i=0;i<nd.length;i++) nd[i]=Math.random()*2-1;
+  const noiseSrc=()=>{ const n=ac.createBufferSource(); n.buffer=nb; n.loop=true; return n; };
+  const burst=(t,dur,type,freq,q,vol)=>{
+    const n=noiseSrc(), f=ac.createBiquadFilter(); f.type=type; f.frequency.value=freq; f.Q.value=q;
+    const g=ac.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+0.004); g.gain.exponentialRampToValueAtTime(0.0005,t+dur);
+    n.connect(f); f.connect(g); g.connect(master); n.start(t,Math.random()*1.5); n.stop(t+dur+0.05);
+  };
+  // constant soft buzz
+  const buzzGain=ac.createGain(); buzzGain.gain.value=0;
+  const buzzPan=ac.createStereoPanner?ac.createStereoPanner():null;
+  const buzzOscs=[];
+  {
+    const bp=ac.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=520; bp.Q.value=0.9;
+    const am=ac.createGain(); am.gain.value=0.6; const lfo=ac.createOscillator(); lfo.frequency.value=34; const lg=ac.createGain(); lg.gain.value=0.38; lfo.connect(lg); lg.connect(am.gain);
+    for(const f of [178,181.5]){ const o=ac.createOscillator(); o.type='sawtooth'; o.frequency.value=f; o.connect(bp); o.start(); buzzOscs.push(o); }
+    bp.connect(am); am.connect(buzzGain); lfo.start();
+    if(buzzPan){ buzzGain.connect(buzzPan); buzzPan.connect(master); } else buzzGain.connect(master);
+  }
+  function splat(){
+    if(!SPLAT_VOLUME) return; const t=ac.currentTime+0.005, v=SPLAT_VOLUME;
+    burst(t,0.07,'bandpass',2000,0.9,0.55*v);                              // "spl"  (wet slap)
+    const o=ac.createOscillator(); o.type='sine'; o.frequency.setValueAtTime(190,t); o.frequency.exponentialRampToValueAtTime(52,t+0.13);
+    const g=ac.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.6*v,t+0.004); g.gain.exponentialRampToValueAtTime(0.001,t+0.2);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t+0.25);           // thump
+    const n=noiseSrc(), f=ac.createBiquadFilter(); f.type='lowpass'; f.Q.value=3; f.frequency.setValueAtTime(1100,t+0.05); f.frequency.exponentialRampToValueAtTime(180,t+0.3);
+    const ng=ac.createGain(); ng.gain.setValueAtTime(0,t+0.05); ng.gain.linearRampToValueAtTime(0.5*v,t+0.06); ng.gain.exponentialRampToValueAtTime(0.001,t+0.32);
+    n.connect(f); f.connect(ng); ng.connect(master); n.start(t,Math.random()*1.5); n.stop(t+0.4);   // "acht" squelch
+    burst(t+0.1,0.04,'highpass',3200,0.7,0.18*v);                          // crunch
+    for(let k=0;k<3;k++){ const b=ac.createOscillator(); b.type='sine'; const bt=t+0.08+k*0.045; b.frequency.setValueAtTime(380+k*120,bt); b.frequency.exponentialRampToValueAtTime(900+k*150,bt+0.05);
+      const bg=ac.createGain(); bg.gain.setValueAtTime(0,bt); bg.gain.linearRampToValueAtTime(0.06*v,bt+0.005); bg.gain.exponentialRampToValueAtTime(0.0005,bt+0.07); b.connect(bg); bg.connect(master); b.start(bt); b.stop(bt+0.1); } // wet bubbles
+  }
+  function buzz(vol,pan,pitch){                          // called every frame
+    const t=ac.currentTime;
+    buzzGain.gain.setTargetAtTime(vol*BUZZ_VOLUME,t,0.1);
+    if(buzzPan) buzzPan.pan.setTargetAtTime(pan,t,0.1);
+    buzzOscs[0].frequency.setTargetAtTime(pitch,t,0.1); buzzOscs[1].frequency.setTargetAtTime(pitch*1.02,t,0.1);
+  }
+  return {ac,splat,buzz};
+}
+
+const Music=(()=>{
+  let ac=null, sfx=null, track=null, fadeTimer=null, musicOn=true;       // music always starts ON
+  const btn=document.getElementById('snd');
+  const paint=()=>{ btn.textContent=musicOn?'♪ Music: ON':'♪ Music: OFF'; };
+  function fadeTo(target,secs){
+    clearInterval(fadeTimer); if(!track) return;
+    const from=track.volume, t0=performance.now();
+    fadeTimer=setInterval(()=>{
+      const k=Math.min(1,(performance.now()-t0)/(secs*1000)); track.volume=clamp(from+(target-from)*k,0,1);
+      if(k>=1){ clearInterval(fadeTimer); if(target===0) track.pause(); }
+    },40);
+  }
+  function playMusic(){
+    if(!track){ track=new Audio(MUSIC_FILE); track.loop=true; track.preload='auto'; track.volume=0; }
+    track.play().then(()=>fadeTo(MUSIC_VOLUME,MUSIC_FADE_S)).catch(()=>{});
+  }
+  function start(){                                   // first user gesture
+    if(!ac){
+      const AC=window.AudioContext||window.webkitAudioContext;
+      if(AC){ ac=new AC(); sfx=createSfx(ac); }
+      document.addEventListener('visibilitychange',()=>{ if(!track) return; if(document.hidden) track.pause(); else if(musicOn) track.play().catch(()=>{}); });
+    }
+    if(ac && ac.state==='suspended') ac.resume();
+    if(musicOn && (!track || track.paused)) playMusic();
+  }
+  function toggle(){
+    musicOn=!musicOn; paint(); start();
+    if(musicOn) playMusic(); else fadeTo(0,0.4);
+  }
+  btn.addEventListener('click',toggle);
+  addEventListener('keydown',e=>{ if(e.key.toLowerCase()==='m') toggle(); else start(); });
+  addEventListener('pointerdown',start);
+  paint();
+  return {
+    start, toggle,
+    state(){ return track?{paused:track.paused,volume:+track.volume.toFixed(3),time:+track.currentTime.toFixed(1),err:track.error&&track.error.code}:null; },
+    splat(){ if(sfx) sfx.splat(); },
+    buzz(vol,pan,pitch){ if(sfx) sfx.buzz(vol,pan,pitch); }
+  };
+})();
+
+/* ---------- input ---------- */
+addEventListener('pointermove',e=>{mouse.x=e.clientX; mouse.y=e.clientY;});
+cv.addEventListener('pointerdown',e=>{
+  mouse.x=e.clientX; mouse.y=e.clientY;
+  if(pressed) return;
+  pressed=true;
+  if(fly.state==='fly' && Math.hypot(fly.x-mouse.x,fly.y-mouse.y)<=catchRadius()){
+    fly.state='caught'; score++; say('Caught!'); gap=GAP_CLOSED_CAUGHT; Music.splat();
+  } else {
+    gap=GAP_CLOSED;
+    if(fly.state==='fly'){ failed++; say(Math.hypot(fly.x-mouse.x,fly.y-mouse.y)<catchRadius()*2.4?'So close!':'Failed'); }
+  }
+});
+function release(){
+  if(!pressed) return;
+  pressed=false;
+  if(fly.state==='caught'){ fly.state='drop'; fly.t=performance.now(); fly.vy=0; fly.vx=rand(-20,20); }
+}
+addEventListener('pointerup',release);
+addEventListener('pointercancel',release);
+addEventListener('blur',release);
+addEventListener('keydown',e=>{ if(e.key.toLowerCase()===DEBUG_KEY) debug=!debug; });
+
+/* ---------- fly ---------- */
+function updateFly(dt,now){
+  if(fly.state==='caught'){ fly.x=mouse.x; fly.y=mouse.y; return; }
+  if(fly.state==='drop'){
+    fly.vy+=1800*dt; fly.y+=fly.vy*dt; fly.x+=fly.vx*dt;
+    if(now-fly.t>650){ fly.state='wait'; fly.t=now; }
+    return;
+  }
+  if(fly.state==='wait'){ if(now-fly.t>350) startLevel(level+1); return; }
+  const sp0=flySpeed();
+  if(now>fly.next){
+    fly.tx=rand(40,W-40); fly.ty=rand(40,H-40);
+    if(Math.random()<0.2){fly.tx=fly.x+rand(-60,60); fly.ty=fly.y+rand(-60,60);}
+    fly.next=now+rand(300,1100)/(1+0.03*level);
+  }
+  const dx=fly.tx-fly.x, dy=fly.ty-fly.y, d=Math.hypot(dx,dy)||1;
+  const k=Math.min(1,dt*(4+0.2*level)), jit=sp0*3.4;
+  fly.vx+=(dx/d*sp0-fly.vx)*k+rand(-1,1)*jit*dt;
+  fly.vy+=(dy/d*sp0-fly.vy)*k+rand(-1,1)*jit*dt;
+  const mx=fly.x-mouse.x, my=fly.y-mouse.y, md=Math.hypot(mx,my);
+  if(md<130){ const f=Math.min(1,0.15+level*0.06); fly.vx+=mx/(md||1)*sp0*3.4*dt*f; fly.vy+=my/(md||1)*sp0*3.4*dt*f; }
+  const sp=Math.hypot(fly.vx,fly.vy);
+  if(sp>sp0){fly.vx*=sp0/sp; fly.vy*=sp0/sp;}
+  fly.x+=fly.vx*dt; fly.y+=fly.vy*dt;
+  if(fly.x<10){fly.x=10;fly.vx=Math.abs(fly.vx);} if(fly.x>W-10){fly.x=W-10;fly.vx=-Math.abs(fly.vx);}
+  if(fly.y<10){fly.y=10;fly.vy=Math.abs(fly.vy);} if(fly.y>H-10){fly.y=H-10;fly.vy=-Math.abs(fly.vy);}
+  if(sp>5) fly.ang=Math.atan2(fly.vy,fly.vx);
+}
+
+/* ---------- hand ---------- */
+function rot(p,a){ // rotate p around PIVOT by a
+  const c=Math.cos(a), sn=Math.sin(a), dx=p.x-PIVOT.x, dy=p.y-PIVOT.y;
+  return {x:PIVOT.x+c*dx-sn*dy, y:PIVOT.y+sn*dx+c*dy};
+}
+function updateHand(dt){
+  const m=toImg(mouse.x,mouse.y);
+  const D0=Math.hypot(TIP0.x-GRIP0.x,TIP0.y-GRIP0.y);
+  const want={ x:clamp(m.x-D0, GRIP0.x+HAND_X_MIN, GRIP0.x+HAND_X_MAX),
+               y:clamp(GRIP0.y+(m.y-TIP0.y)*HAND_FOLLOW_Y, GRIP0.y+HAND_Y_MIN, GRIP0.y+HAND_Y_MAX) };
+  const f=1-Math.exp(-dt*HAND_SMOOTH);
+  // smooth the wanted grip position, then derive the arm tilt + translation
+  hand.gx=(hand.gx===undefined?GRIP0.x:hand.gx); hand.gy=(hand.gy===undefined?GRIP0.y:hand.gy);
+  hand.gx+=(want.x-hand.gx)*f; hand.gy+=(want.y-hand.gy)*f;
+  hand.th=clamp((hand.gx-GRIP0.x)*LEAN,-0.3,0.45);
+  const r=rot(GRIP0,hand.th);
+  hand.tx=hand.gx-r.x; hand.ty=hand.gy-r.y;
+}
+function handTransform(){
+  ctx.translate(hand.tx,hand.ty);
+  ctx.translate(PIVOT.x,PIVOT.y); ctx.rotate(hand.th); ctx.translate(-PIVOT.x,-PIVOT.y);
+}
+function drawHandLayer(img){
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0,0,IW,IH); ctx.clip();      // the arm comes out from the bottom edge of the picture
+  handTransform();
+  ctx.drawImage(img,ARM.x,ARM.y,img.width*ARM.scale,img.height*ARM.scale);
+  ctx.restore();
+}
+
+/* ---------- chopsticks ---------- */
+function stickPoly(x0,y0,x1,y1,w0,w1){
+  const a=Math.atan2(y1-y0,x1-x0), nx=-Math.sin(a), ny=Math.cos(a);
+  return {a,nx,ny,pts:[[x0+nx*w0/2,y0+ny*w0/2],[x1+nx*w1/2,y1+ny*w1/2],[x1-nx*w1/2,y1-ny*w1/2],[x0-nx*w0/2,y0-ny*w0/2]]};
+}
+function drawStick(x0,y0,x1,y1,w0,w1){
+  const p=stickPoly(x0,y0,x1,y1,w0,w1), q=p.pts;
+  const path=()=>{ctx.beginPath(); ctx.moveTo(q[0][0],q[0][1]); for(let i=1;i<4;i++)ctx.lineTo(q[i][0],q[i][1]); ctx.closePath();};
+  path(); ctx.fillStyle='#bd8444'; ctx.fill();
+  // darker lower half
+  ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); ctx.lineTo(q[2][0],q[2][1]); ctx.lineTo(q[3][0],q[3][1]); ctx.closePath();
+  ctx.fillStyle='#a06c33'; ctx.fill();
+  // highlight
+  ctx.beginPath(); ctx.moveTo(x0+p.nx*w0*0.22,y0+p.ny*w0*0.22); ctx.lineTo(x1+p.nx*w1*0.22,y1+p.ny*w1*0.22);
+  ctx.strokeStyle='#e6b977'; ctx.lineWidth=2.6; ctx.lineCap='round'; ctx.stroke();
+  path(); ctx.lineWidth=OUTLINE; ctx.strokeStyle='#2c1a0c'; ctx.lineJoin='round'; ctx.stroke();
+}
+let tipInfo=null;
+function computeSticks(){
+  const m=toImg(mouse.x,mouse.y);
+  const r=rot(GRIP0,hand.th), G={x:r.x+hand.tx,y:r.y+hand.ty};
+  let dx=m.x-G.x, dy=m.y-G.y, d=Math.hypot(dx,dy);
+  if(d<60){ dx=1;dy=0; d=60; }
+  const ux=dx/d, uy=dy/d;
+  let nx=-uy, ny=ux; if(ny>0){nx=-nx;ny=-ny;}     // n points "up"
+  const Ls=Math.max(STICK_LEN,d+110);
+  const out=[];
+  // top stick: passes through the grip (thumb side)
+  const gT={x:G.x+nx*SEP/2, y:G.y+ny*SEP/2}, tT={x:m.x+nx*gap/2, y:m.y+ny*gap/2};
+  let ax=tT.x-gT.x, ay=tT.y-gT.y, al=Math.hypot(ax,ay)||1; ax/=al; ay/=al;
+  const rT={x:tT.x-ax*Ls, y:tT.y-ay*Ls};
+  out.push({tip:tT, rear:rT});
+  // bottom stick: same tip, but its back end is far below the top one
+  const tB={x:m.x-nx*gap/2, y:m.y-ny*gap/2};
+  const rB={x:rT.x-nx*SEP_REAR, y:rT.y-ny*SEP_REAR};
+  out.push({tip:tB, rear:rB});
+  tipInfo={m,G,ux,uy,nx,ny,sticks:out};
+}
+function drawSticks(){
+  const T=tipInfo;
+  const st1=T.sticks[1], st0=T.sticks[0];
+  drawStick(st1.rear.x,st1.rear.y,st1.tip.x,st1.tip.y,W_REAR,W_TIP);   // bottom stick: behind the fly
+  drawSquashedFly();                                                    // the fly is pinned between the two sticks
+  drawStick(st0.rear.x,st0.rear.y,st0.tip.x,st0.tip.y,W_REAR,W_TIP);   // top stick: in front of the fly
+}
+
+/* ---------- fly drawing ---------- */
+function drawSprite(c,img,len){        // draws a sprite centred on its anchor; len = fly length in current units
+  const k=len/FLY_SPR_BODY, w=img.width*k, h=img.height*k;
+  const key=img===IMG.fly1?'fly1':img===IMG.fly2?'fly2':'flyDead', an=FLY_ANCHORS[key];
+  c.drawImage(img,-w*an.x,-h*an.y,w,h);
+}
+function drawFreeFly(now){             // screen space
+  if(fly.state!=='fly' && fly.state!=='drop') return;
+  const len=Math.max(27,FLY_LEN*s);
+  ctx.save(); ctx.translate(fly.x,fly.y);
+  if(fly.state==='drop'){
+    const a=1-(now-fly.t)/650; ctx.globalAlpha=clamp(a,0,1); ctx.rotate((now-fly.t)/260);
+    drawSprite(ctx,IMG.flyDead,len*0.99);
+  } else {
+    ctx.rotate(fly.ang+Math.PI/2);
+    const wob=Math.sin(now/37)*0.06; ctx.rotate(wob);
+    drawSprite(ctx,(Math.floor(now/FLAP_MS)%2)?IMG.fly1:IMG.fly2,len);
+  }
+  ctx.restore();
+}
+function drawSquashedFly(){          // scene space, under the sticks: the fly lies across the tips
+  if(fly.state!=='caught'||!tipInfo) return;
+  const T=tipInfo;
+  ctx.save();
+  ctx.translate(T.m.x-T.ux*36,T.m.y-T.uy*36);
+  ctx.rotate(Math.atan2(T.nx,-T.ny));  // head toward the top stick
+  drawSprite(ctx,IMG.flyDead,FLY_LEN*1.125);   // caught fly: 10% smaller than before (was x1.25)
+  ctx.restore();
+}
+/* ---------- eyes ---------- */
+function drawEyes(dt){
+  const cx=(EYES[0].x+EYES[1].x)/2, cy=(EYES[0].y+EYES[1].y)/2, m=toImg(mouse.x,mouse.y);
+  const tx=clamp((m.x-cx)/(IW*0.35),-1,1)*EYE_MAX_X, ty=clamp((m.y-cy)/(IH*0.35),-1,1)*EYE_MAX_Y;
+  const k=Math.min(1,dt*EYE_SMOOTH);
+  eyeLook.x+=(tx-eyeLook.x)*k; eyeLook.y+=(ty-eyeLook.y)*k;
+  for(const e of EYES){
+    ctx.save();
+    ctx.beginPath(); ctx.ellipse(e.x,e.y,EYE_RX,EYE_RY,0,0,Math.PI*2); ctx.clip();
+    ctx.fillStyle='#f3eee4'; ctx.fillRect(e.x-EYE_RX,e.y-EYE_RY,EYE_RX*2,EYE_RY*2);
+    const ix=e.x+eyeLook.x, iy=e.y+eyeLook.y;
+    ctx.beginPath(); ctx.arc(ix,iy,IRIS_R,0,Math.PI*2); ctx.fillStyle='#17110f'; ctx.fill();
+    ctx.beginPath(); ctx.arc(ix-3.2,iy-3.2,2.4,0,Math.PI*2); ctx.fillStyle='#ffffffcc'; ctx.fill();
+    ctx.restore();
+    ctx.beginPath(); ctx.ellipse(e.x,e.y,EYE_RX,EYE_RY,0,Math.PI*1.02,Math.PI*1.98);
+    ctx.strokeStyle='#1a1412'; ctx.lineWidth=3.2; ctx.lineCap='round'; ctx.stroke();
+  }
+}
+
+/* ---------- LEVEL banner ---------- */
+const BANNER_MS=2000;
+function drawLevelBanner(now){
+  const el=now-bannerT; if(el<0||el>BANNER_MS) return;
+  const popT=Math.min(el/320,1), easeBack=1+2.2*Math.pow(popT-1,3)+1.2*Math.pow(popT-1,2);   // overshoot
+  const sc=popT<1?(2.6-1.6*easeBack):1;
+  const fade=el>BANNER_MS-500?1-(el-(BANNER_MS-500))/500:1;
+  const fsz=Math.min(W*0.075,H*0.14), text=banner.toUpperCase();
+  const shake=el<420?Math.sin(el/22)*(1-el/420)*0.05:0;
+  ctx.save(); ctx.globalAlpha=clamp(fade,0,1);
+  ctx.translate(W/2,H*0.83); ctx.rotate(-0.045+shake); ctx.scale(sc,sc);
+  ctx.font=`italic 900 ${fsz}px LvlFont,"Arial Black",Impact,sans-serif`; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.lineJoin='round'; ctx.miterLimit=2;
+  // drop shadow
+  ctx.save(); ctx.shadowColor='rgba(0,0,0,.45)'; ctx.shadowBlur=fsz*0.12; ctx.shadowOffsetY=fsz*0.07;
+  ctx.lineWidth=fsz*0.22; ctx.strokeStyle='#fff'; ctx.strokeText(text,0,0); ctx.restore();
+  ctx.lineWidth=fsz*0.22; ctx.strokeStyle='#fff'; ctx.strokeText(text,0,0);          // white outline
+  ctx.lineWidth=fsz*0.12; ctx.strokeStyle='#161f6b'; ctx.strokeText(text,0,0);       // dark navy ring
+  const grad=ctx.createLinearGradient(0,-fsz*0.5,0,fsz*0.5); grad.addColorStop(0,'#3d58f0'); grad.addColorStop(0.55,'#2236b8'); grad.addColorStop(1,'#16228a');
+  ctx.fillStyle=grad; ctx.fillText(text,0,0);                                          // blue body
+  ctx.save(); ctx.beginPath(); ctx.rect(-W,-fsz,2*W,fsz*0.5); ctx.clip();
+  ctx.fillStyle='rgba(255,255,255,.18)'; ctx.fillText(text,0,-fsz*0.03); ctx.restore();   // top shine
+  ctx.lineWidth=fsz*0.018; ctx.strokeStyle='rgba(150,175,255,.55)'; ctx.strokeText(text,0,0);  // thin bevel line
+  ctx.restore();
+}
+
+/* ---------- HUD ---------- */
+function pill(x,y,w,h){ctx.beginPath(); ctx.roundRect?ctx.roundRect(x,y,w,h,h/2):ctx.rect(x,y,w,h);}
+function drawHUD(now){
+  const fs=Math.max(15,Math.min(22,W/70));
+  ctx.font=`800 ${fs}px system-ui,-apple-system,"Segoe UI",sans-serif`; ctx.textAlign='left'; ctx.textBaseline='middle';
+  const t=`LEVEL ${level}   ·   Caught: ${score}   ·   Failed: ${failed}`;
+  const w=ctx.measureText(t).width+fs*1.6, h=fs*2;
+  pill(14,14,w,h); ctx.fillStyle='rgba(255,255,255,.92)'; ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle='#1d2a5b'; ctx.stroke();
+  ctx.fillStyle='#1d2a5b'; ctx.fillText(t,14+fs*0.8,14+h/2+1);
+  ctx.textAlign='left';
+  if(msg&&now-msgT<900){
+    const a=1-(now-msgT)/900; ctx.globalAlpha=a;
+    ctx.font=`900 ${fs*1.9}px system-ui,-apple-system,"Segoe UI",sans-serif`;
+    ctx.lineWidth=6; ctx.strokeStyle='#fff'; ctx.strokeText(msg,16,14+h+fs*1.6);
+    ctx.fillStyle='#c8312b'; ctx.fillText(msg,16,14+h+fs*1.6); ctx.globalAlpha=1;
+  }
+  drawLevelBanner(now);
+}
+
+/* ---------- loop ---------- */
+let last=performance.now();
+function frame(now){
+  const dt=Math.min(0.05,(now-last)/1000); last=now;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+  if(ready){
+    ctx.imageSmoothingQuality='high';
+    updateHand(dt);
+    const target=pressed?(fly.state==='caught'?GAP_CLOSED_CAUGHT:GAP_CLOSED):GAP_OPEN;
+    gap = pressed ? target : gap+(target-gap)*Math.min(1,dt*16);
+    updateFly(dt,now);
+    if(fly.state==='fly'){                       // very soft buzz: a bit louder the closer the fly is to your chopsticks
+      const prox=clamp(1-Math.hypot(fly.x-mouse.x,fly.y-mouse.y)/(W*0.7),0,1), sp=Math.hypot(fly.vx,fly.vy)/W;
+      Music.buzz(0.045+0.065*prox, clamp(fly.x/W*2-1,-0.85,0.85), 165+Math.min(level,12)*5+Math.min(sp,3)*28);
+    } else Music.buzz(0,0,170);
+    computeSticks();
+    // scene in image space
+    ctx.setTransform(DPR*s,0,0,DPR*s,DPR*ox,DPR*oy);
+    ctx.drawImage(IMG.title,0,0,IW,IH);
+    ctx.translate(MIYAGI_DX,0);
+    ctx.drawImage(IMG.back,0,0,IW,IH);
+    drawEyes(dt);
+    drawHandLayer(IMG.armBack);    // arm + hand (thumb side)
+    drawSticks();                  // chopsticks
+    drawHandLayer(IMG.armFront);   // fingers + sleeve that cover the chopsticks
+    if(debug){
+      ctx.fillStyle='#f0f'; ctx.beginPath(); ctx.arc(tipInfo.G.x,tipInfo.G.y,8,0,7); ctx.fill();
+      ctx.fillStyle='#0a0'; ctx.beginPath(); ctx.arc(PIVOT.x,Math.min(PIVOT.y,IH-10),8,0,7); ctx.fill();
+      for(const e of EYES){ctx.strokeStyle='#f0f';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(e.x,e.y,EYE_RX,EYE_RY,0,0,7);ctx.stroke();}
+    }
+    // screen space
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    drawFreeFly(now);
+    drawHUD(now);
+  }
+  requestAnimationFrame(frame);
+}
+resize(); requestAnimationFrame(frame);
+</script>
+</body>
+</html>
